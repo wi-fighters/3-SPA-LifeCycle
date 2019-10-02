@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
+import User from './User';
 
 class SearchResults extends Component {
+    
+    state = {
+        users: [
+            { id: 1000, name: 'John Smith', email: 'john@abc.com' },
+            { id: 1001, name: 'Kyra Johnson', email: 'kyra@gmail.com' },
+            { id: 1002, name: 'Kelly Brandon', email: 'k.brandon@microsoft.com' },
+            { id: 1003, name: 'Peter Weller', email: 'peter.weller@robocop.com' },
+            { id: 1004, name: 'Brandon Fisher', email: 'b.fisher@disney.com' },
+            { id: 1005, name: 'Quentin Jackson', email: 'quentin@miramax.com' },
+            { id: 1006, name: 'Jeanna La Croisse', email: 'jlc@bingo-now.org' },
+            { id: 1007, name: 'Herbert Rocks', email: 'herby@sofast.net' },
+            { id: 1008, name: 'Mike Johnson', email: 'mike@microsoft.com' },
+            { id: 1009, name: 'Sarah Michaels', email: 'sarah.m@abc.com' }
+        ]
+    }
+    
     render() {
         return (
             <div className="results">
@@ -10,16 +27,9 @@ class SearchResults extends Component {
                     <td>Name</td>
                     <td>Email</td>  
                 </thead>
-                <tr><td>1000</td><td>John Smith</td><td>john@abc.com</td></tr>
-                <tr><td>1001</td><td>Kyra Johnson</td><td>kyra@gmail.com</td></tr>
-                <tr><td>1002</td><td>Kelly Brandon</td><td>k.brandon@microsoft.com</td></tr>
-                <tr><td>1003</td><td>Peter Weller</td><td>peter.weller@robocop.com</td></tr>
-                <tr><td>1004</td><td>Brandon Fisher</td><td>b.fisher@disney.com</td></tr>
-                <tr><td>1005</td><td>Quentin Jackson</td><td>quentin@miramax.com</td></tr>
-                <tr><td>1006</td><td>Jeanna La Croisse</td><td>jlc@bingo-now.org</td></tr>
-                <tr><td>1007</td><td>Herbert Rocks</td><td>herby@sofast.net</td></tr>
-                <tr><td>1008</td><td>Mike Johnson</td><td>mike@microsoft.com</td></tr>
-                <tr><td>1009</td><td>Sarah Michaels</td><td>sarah.m@abc.com</td></tr>
+                {this.state.users && this.state.users.map(
+                    (user) => <User id={user.id} name={user.name} email={user.email} />
+                )}
                 </table>
             </div>
         )
