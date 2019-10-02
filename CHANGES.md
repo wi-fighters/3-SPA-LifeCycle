@@ -1,5 +1,9 @@
 # Changes
 
+## Change 3
+
+- Created Header and SearchResults (stateful) component
+
 ## Change 2
 
 - created HTML & CSS, no JavaScript coding yet
