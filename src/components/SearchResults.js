@@ -18,9 +18,25 @@ class SearchResults extends Component {
         ]
     }
     
+    lastSearchFor = null;
+
+    shouldComponentUpdate(nextProps) {
+        console.log('shouldComponentUpdate...');
+        
+        if(nextProps.searchFor === this.lastSearchFor) {
+          console.log('The new searchTerm is equal to the last searchTerm. Do not re-render.');
+          return false;
+        }
+        else {
+          console.log('The new searchTerm differs to the last searchTerm. Re-render.');
+          this.lastSearchFor = nextProps.searchFor;
+          return true;
+        }
+      }
+
     render() {
         
-        const searchForLower = new String(this.props.searchFor).toLowerCase();
+        const searchForLower = new String(this.lastSearchFor).toLowerCase();
         return (
             <div className="results">
                 <table>
