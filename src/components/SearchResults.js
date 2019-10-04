@@ -18,10 +18,12 @@ class SearchResults extends Component {
         ]
     }
     
-    lastSearchFor = '';
+    lastSearchFor = null; // null means, there has not been any search yet.
     shouldComponentUpdate(nextProps) {
         console.log('shouldComponentUpdate...');
         
+        console.log(`${nextProps.searchFor}, ${this.lastSearchFor}`);
+
         if(nextProps.searchFor === this.lastSearchFor) {
           console.log('The new searchTerm is equal to the last searchTerm. Do not re-render.');
           return false;
@@ -33,8 +35,28 @@ class SearchResults extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount = async () => {
         console.log('the SeachResults-component has been mounted.');
+        try {
+            const result = await fetch('https://jsonplaceholder.typicode.com/users');
+            const data = await result.json();
+            
+            const users = [];
+            for(let user of data) {
+                users.push({
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                });
+            }
+
+            this.setState({
+                users: users
+            });
+        }
+        catch(e) {
+            console.log(e);
+        }
     }
 
     componentWillUnmount() {
