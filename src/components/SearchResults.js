@@ -19,6 +19,8 @@ class SearchResults extends Component {
     }
     
     render() {
+        
+        const searchForLower = new String(this.props.searchFor).toLowerCase();
         return (
             <div className="results">
                 <table>
@@ -27,7 +29,9 @@ class SearchResults extends Component {
                     <td>Name</td>
                     <td>Email</td>  
                 </thead>
-                {this.state.users && this.state.users.map(
+                {this.state.users && this.state.users
+                .filter(user => user.name.toLowerCase().includes(searchForLower) || user.email.toLowerCase().includes(searchForLower))
+                .map(
                     (user) => <User id={user.id} name={user.name} email={user.email} />
                 )}
                 </table>
