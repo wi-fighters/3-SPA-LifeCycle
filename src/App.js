@@ -24,10 +24,15 @@ class App extends Component {
     });
   }
 
+  
   navigate = (page) => {
-    this.setState({
-      currentPage: page
-    });
+    // only re-render if the page is a new page
+    if(page !== this.state.currentPage) {
+      this.setState({
+        searchTerm: '', // reset this
+        currentPage: page
+      });
+    }
   }
 
   render() {
