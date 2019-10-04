@@ -18,8 +18,7 @@ class SearchResults extends Component {
         ]
     }
     
-    lastSearchFor = null;
-
+    lastSearchFor = '';
     shouldComponentUpdate(nextProps) {
         console.log('shouldComponentUpdate...');
         
@@ -32,10 +31,17 @@ class SearchResults extends Component {
           this.lastSearchFor = nextProps.searchFor;
           return true;
         }
-      }
+    }
+
+    componentDidMount() {
+        console.log('the SeachResults-component has been mounted.');
+    }
+
+    componentWillUnmount() {
+        console.log('the SeachResults-component has unmounted.');
+    }
 
     render() {
-        
         const searchForLower = new String(this.lastSearchFor).toLowerCase();
         return (
             <div className="results">

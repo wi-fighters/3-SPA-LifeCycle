@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
+import About from './components/About';
 import './App.scss';
 
 class App extends Component {
   
   state = {
     searchTerm: '',
-    lastSearchTerm: ''
+    lastSearchTerm: '',
+    currentPage: 'search'
   }
   
   handleOnChange = (e) => {
@@ -22,20 +24,33 @@ class App extends Component {
     });
   }
 
+  navigate = (page) => {
+    this.setState({
+      currentPage: page
+    });
+  }
+
   render() {
     return (
       <div>
-        <Header />
+        <Header navigationHandler={this.navigate} />
         <div className="main">
-          <div className="search">
-            <input type="text" 
-                   placeholder="Enter Searchterm" 
-                   value={this.state.searchTerm} 
-                   onChange={this.handleOnChange} 
-            />
-            <button onClick={this.handleOnClick}>Search</button>
-          </div>
-          <SearchResults searchFor={this.state.lastSearchTerm} />
+          { this.state.currentPage === 'search' &&
+            <React.Fragment>
+              <div className="search">
+                <input type="text" 
+                      placeholder="Enter Searchterm" 
+                      value={this.state.searchTerm} 
+                      onChange={this.handleOnChange} 
+                />
+                <button onClick={this.handleOnClick}>Search</button>
+              </div>
+              <SearchResults searchFor={this.state.lastSearchTerm} />
+            </React.Fragment>
+          }
+          { this.state.currentPage === 'about' && 
+            <About />
+          }
         </div>
       </div>
     );

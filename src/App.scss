@@ -4,11 +4,22 @@ body, html {
 }
 
 .header {
+  display: flex;
   height: 120px;
-  font-size: 24px;
   background-color: rgba(192, 192, 192, 0.835);
-  line-height: 120px;
   padding-left: 10px;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  .logo {
+    font-size: 24px;
+  }
+
+  .menu {
+    text-align: right;
+    padding-right: 10px;
+    cursor: pointer;
+  }
 }
 
 .search {
@@ -42,4 +53,10 @@ body, html {
       background-color: rgba(39, 150, 253, 0.561);
     }
   }
+}
+
+.about {
+  width: 400px;
+  margin: 10px auto;
+  padding: 5px;
 }
